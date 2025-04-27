@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Encryption/Decryption</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3 class="center-align">File Encryption/Decryption</h3>
+
+    <!-- Criptografia -->
+    <div class="section">
+        <h5 class="center-align">Encrypt File</h5>
+        <form action="/" method="POST" enctype="multipart/form-data" class="card-panel">
+            <div class="file-field input-field">
+                <div class="btn blue">
+                    <span>File</span>
+                    <input type="file" name="file" id="file" required>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Select a file to encrypt">
+                </div>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" name="password" id="password" required>
+                <label for="password">Enter a password</label>
+            </div>
+            <button class="btn waves-effect waves-light blue" type="submit">Encrypt File</button>
+        </form>
+    </div>
+
+    <!-- Descriptografia -->
+    <div class="section">
+        <h5 class="center-align">Decrypt File</h5>
+        <form action="/decrypt" method="POST" enctype="multipart/form-data" class="card-panel">
+            <div class="file-field input-field">
+                <div class="btn green">
+                    <span>File</span>
+                    <input type="file" name="encrypted_file" id="encrypted_file" accept=".aes" required>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Select an encrypted file (.aes)">
+                </div>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">lock_open</i>
+                <input type="password" name="password" id="password" required>
+                <label for="password">Enter the password</label>
+            </div>
+            <button class="btn waves-effect waves-light green" type="submit">Decrypt File</button>
+        </form>
+    </div>
+
+    <!-- Exibir Mensagens Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="row">
+                <div class="col s12">
+                    <ul class="collection">
+                        {% for category, message in messages %}
+                            <li class="collection-item {% if category == 'error' %}red-text{% else %}green-text{% endif %}">
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
