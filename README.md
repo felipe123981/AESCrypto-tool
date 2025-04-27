@@ -1,13 +1,13 @@
-### This is na pen source tool to encrypt your files with AES-GCM algoritmo
-###Usage:
+This is na pen source tool to encrypt your files with AES-GCM algoritmo
+Usage:
 
-###[+] Initialize the scripts:
+[+] Initialize the scripts:
 ```
 python -m venv venv
 
 venv\Scripts\activate
 ```
-###[+]Install the dependencies and execute:
+[+]Install the dependencies and execute:
 ```
 pip install -r requirements.txt
 
